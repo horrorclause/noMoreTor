@@ -4,8 +4,6 @@
 Checks AbuseIPDB for verification of Tor Exit Nodes
 """
 
-from base64 import decode
-from urllib import response
 import requests
 import json
 
