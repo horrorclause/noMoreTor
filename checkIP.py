@@ -12,7 +12,7 @@ url = 'https://api.abuseipdb.com/api/v2/check'
 
 # Test with known Tor IP
 queryString = {
-    'ipAddress': '5.255.100.245'
+    'ipAddress': '2602:fd92:05e9:aeaf:0000:0000:0000:0001'
 }
 
 # Key is personal API key
