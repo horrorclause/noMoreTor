@@ -33,6 +33,9 @@ def ipCheck(ip):
     return json.loads(response.text)
 
 
-# iterating through data
+# iterating through data to see if "tor" is listed
 for i in ipCheck('109.70.100.8')['data'].items():
-    print(i)
+    for x in i:
+        if x == "hostnames":
+            if "tor" in i[1][0]:
+                print(i[1][0])
