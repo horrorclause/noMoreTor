@@ -7,23 +7,32 @@ Checks AbuseIPDB for verification of Tor Exit Nodes
 import requests
 import json
 
-# Defining the api-endpoint
-url = 'https://api.abuseipdb.com/api/v2/check'
 
-# Test with known Tor IP
-queryString = {
-    'ipAddress': '2602:fd92:05e9:aeaf:0000:0000:0000:0001'
-}
+def ipCheck(ip):
+    # Defining the api-endpoint
+    url = 'https://api.abuseipdb.com/api/v2/check'
 
-# Key is personal API key
-headers = {
-    'Accept': 'application/json',
-    'Key': "3eb37206ccfb88da19a801be0e31964ac7d072817efba30d6e544a206a81ff54cee6dd1880e4b783"
-}
+    # Test with known Tor IP
+    queryString = {
+        'ipAddress': ip
+    }
 
-response = requests.request(method='GET', url=url, headers=headers, params=queryString)
+    # Key is personal API key
+    headers = {
+        'Accept': 'application/json',
+        'Key': "3eb37206ccfb88da19a801be0e31964ac7d072817efba30d6e544a206a81ff54cee6dd1880e4b783"
+    }
 
-# Formatted output
-decodedResponse = json.loads(response.text)
+    response = requests.request(method='GET', url=url, headers=headers, params=queryString)
 
-print(json.dumps(decodedResponse, sort_keys=True, indent=4))
+    # Formatted output
+    #decodedResponse = json.loads(response.text)
+    #json.dumps(decodedResponse, sort_keys=True, indent=4)
+
+    # Information is returned as a dictionary with a single key = 'data' and value of another dictionary
+    return json.loads(response.text)
+
+
+# iterating through data
+for i in ipCheck('109.70.100.8')['data'].items():
+    print(i)
