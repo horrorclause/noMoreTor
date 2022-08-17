@@ -130,4 +130,5 @@ dmypy.json
 
 
 # Python Files
-verifiedTorList2022-08-17.txt
+verifiedTorList*.txt
+needReviewTorList*.txt
