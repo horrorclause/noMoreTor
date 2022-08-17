@@ -15,6 +15,7 @@ def getTorList():
     siteUrl = "https://check.torproject.org/torbulkexitlist"
     bulkList = wget.download(siteUrl, f"torBulkExitList-{today}.txt")
 
+
 #TODO: Create Master blocklist of confirmed IPs, and list of IPs that need to be verified
 
 def createLists():
@@ -31,11 +32,11 @@ def createLists():
     verifiedIPs = open(vName, "w")
     ipsNeedReview = open(rName, "w")
 
-    reviewIPsSet = []
+    reviewIPsList = []
 
     # Checks if IPs from torbulkexitlist are identified as such in ABUSEIPDB
     for ip in f.readlines():
-        if count <= 10:
+        if count <= 336:
             checkedIP = ipCheck(ip.strip())
             if checkedIP != None:
                 #print(f"IP: {ip.strip()} -- Hostname: {checkedIP}")
@@ -44,7 +45,7 @@ def createLists():
                 
             else:
                 #print(f"IP: {ip.strip()} requires further checking, does not have 'TOR' in hostname.")
-                reviewIPsSet.append(ip.strip())
+                reviewIPsList.append(ip.strip())
                 ipsNeedReview.write(ip)
             count+=1
 
@@ -53,7 +54,7 @@ def createLists():
     verifiedIPs.close()
     ipsNeedReview.close()
 
-    return reviewIPsSet
+    return reviewIPsList
 
 #TODO: Add functionality to check if IPs are still associated with Tor, if not, remove them
 
