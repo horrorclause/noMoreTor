@@ -29,11 +29,20 @@ def ipCheck(ip):
 
     # iterating through data to see if "tor" is listed, if it is return the hostname, else returns "None"
     for x in ipDict['data'].items():
-        for entry in x:
-            if entry == "hostnames":
-                if "tor" in x[1][0]:
+        try:
+            for entry in x:
+                if entry == "hostnames":
+                    if "tor" in x[1][0]:
 
-                    return x[1][0]
+                        return x[1][0]
+        except IndexError as e:
+            # List index out of range, no hostname provided
+            #print(ip,x, e)
+            return None
 
 
-#print(ipCheck("109.70.100.8"))
+"""f = open("torBulkExitList-2022-08-17.txt", "r")
+
+for i in f.readlines():
+    print(ipCheck(i.strip()))
+#print(ipCheck("109.70.100.8"))"""
