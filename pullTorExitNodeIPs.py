@@ -13,7 +13,7 @@ rName = f"needReviewTorList-{today}.txt"  # Name for IPs that need Review
 # Downloads the latest Tor Bulk Exit List
 def getTorList():
     siteUrl = "https://check.torproject.org/torbulkexitlist"
-    bulkList = wget.download(siteUrl, f"torBulkExitList-{today}.txt")
+    wget.download(siteUrl, f"torBulkExitList-{today}.txt")
 
 
 #TODO: Create Master blocklist of confirmed IPs, and list of IPs that need to be verified
