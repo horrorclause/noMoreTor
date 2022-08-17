@@ -7,7 +7,6 @@ Checks AbuseIPDB for verification of Tor Exit Nodes
 import requests
 import json
 
-
 def ipCheck(ip):
     # Defining the api-endpoint
     url = 'https://api.abuseipdb.com/api/v2/check'
@@ -25,19 +24,16 @@ def ipCheck(ip):
 
     response = requests.request(method='GET', url=url, headers=headers, params=queryString)
 
-    # Formatted output
-    #decodedResponse = json.loads(response.text)
-    #json.dumps(decodedResponse, sort_keys=True, indent=4)
-
     # Information is returned as a dictionary with a single key = 'data' and value of another dictionary
-    return json.loads(response.text)
+    ipDict = json.loads(response.text)
+
+    # iterating through data to see if "tor" is listed, if it is return the hostname, else returns "None"
+    for x in ipDict['data'].items():
+        for entry in x:
+            if entry == "hostnames":
+                if "tor" in x[1][0]:
+
+                    return x[1][0]
 
 
-"""
-# iterating through data to see if "tor" is listed
-for i in ipCheck('109.70.100.8')['data'].items():
-    for x in i:
-        if x == "hostnames":
-            if "tor" in i[1][0]:
-                print(i[1][0])
-"""
+#print(ipCheck("109.70.100.8"))
