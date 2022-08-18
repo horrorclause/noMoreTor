@@ -132,3 +132,4 @@ dmypy.json
 # Python Files
 verifiedTorList*.txt
 needReviewTorList*.txt
+torBulkExitList*.txt
