@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from time import time
 import wget
 from os import path
 from datetime import date, timedelta
