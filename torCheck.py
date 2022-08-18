@@ -30,11 +30,15 @@ def getTorList():
 
         for y in open(f"torBulkExitList-{yesterday}.txt", "r").readlines():
             yesterdayTor.add(y.strip())
+
+        new = [ip for ip in todayTor if ip not in yesterdayTor] # Checks if an ip is in today's list that is not in yesterday's
+        
+        return new
     
     except Exception as e:
         print(e)
 
-getTorList()
+print(getTorList())
 
 
 
