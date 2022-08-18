@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+
+'''
+moving to be deprecated - torCheck.py will be more optimized.
+
+
+'''
 from datetime import date
 from checkIP import ipCheck
 import wget
@@ -15,6 +21,7 @@ def getTorList():
     siteUrl = "https://check.torproject.org/torbulkexitlist"
     wget.download(siteUrl, f"torBulkExitList-{today}.txt")
 
+getTorList()
 
 #TODO: Create Master blocklist of confirmed IPs, and list of IPs that need to be verified
 
@@ -32,11 +39,11 @@ def createLists():
     verifiedIPs = open(vName, "w")
     ipsNeedReview = open(rName, "w")
 
-    reviewIPsList = []
+    reviewIPsList = set()
 
     # Checks if IPs from torbulkexitlist are identified as such in ABUSEIPDB
     for ip in f.readlines():
-        if count <= 336:
+        if count <= 1000:
             checkedIP = ipCheck(ip.strip())
             if checkedIP != None:
                 #print(f"IP: {ip.strip()} -- Hostname: {checkedIP}")
@@ -45,7 +52,7 @@ def createLists():
                 
             else:
                 #print(f"IP: {ip.strip()} requires further checking, does not have 'TOR' in hostname.")
-                reviewIPsList.append(ip.strip())
+                reviewIPsList.add(ip.strip())
                 ipsNeedReview.write(ip)
             count+=1
 
