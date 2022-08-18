@@ -133,3 +133,4 @@ dmypy.json
 verifiedTorList*.txt
 needReviewTorList*.txt
 torBulkExitList*.txt
+*.bat
