@@ -34,7 +34,7 @@ def createLists():
 
     reviewIPsList = []
 
-    """# Checks if IPs from torbulkexitlist are identified as such in ABUSEIPDB
+    # Checks if IPs from torbulkexitlist are identified as such in ABUSEIPDB
     for ip in f.readlines():
         if count <= 336:
             checkedIP = ipCheck(ip.strip())
@@ -47,7 +47,7 @@ def createLists():
                 #print(f"IP: {ip.strip()} requires further checking, does not have 'TOR' in hostname.")
                 reviewIPsList.append(ip.strip())
                 ipsNeedReview.write(ip)
-            count+=1"""
+            count+=1
 
 
     f.close()
