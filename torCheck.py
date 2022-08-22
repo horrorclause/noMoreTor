@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+'''
+Pull the latest Tor exit node IPs as recorded by torproject.org; Creates a file for every new day and compares new IPs added today versus yesterday. Produces a
+log file with the results.
+'''
+
 import wget
 from os import path
 from datetime import date, timedelta
@@ -10,6 +15,7 @@ def getTorList():
     today = date.today()
     yesterday = today - timedelta(days=1)
     
+    # Log variables
     logEntries = {
         "Date" : today,
         "IP Change" : "",
@@ -21,11 +27,9 @@ def getTorList():
             siteUrl = "https://check.torproject.org/torbulkexitlist"
             wget.download(siteUrl, f"torBulkExitList-{today}.txt")
             
-            #print(f"[+] torBulkExitList-{today}.txt has been created")
             logEntries["Messages"] = f"torBulkExitList-{today}.txt has been created successfuly!"
 
         else:
-            #print(f"[X] torBulkExitList-{today}.txt already exists")
             logEntries["Messages"] = f"torBulkExitList-{today}.txt was not created because it already exists!"
 
         todayTor = set()
@@ -62,8 +66,7 @@ def getTorList():
         print(e)
 
 
-print(getTorList())
-
+getTorList()
 
 
 
