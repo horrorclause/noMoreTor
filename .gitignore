@@ -134,3 +134,6 @@ verifiedTorList*.txt
 needReviewTorList*.txt
 torBulkExitList*.txt
 *.bat
+checkIP.py
+pullTorExitNodeIPs.py
+torLog.txt
