@@ -129,11 +129,12 @@ dmypy.json
 .pyre/
 
 
-# Python Files
+# Various Log Files
 verifiedTorList*.txt
 needReviewTorList*.txt
 torBulkExitList*.txt
 *.bat
-checkIP.py
-pullTorExitNodeIPs.py
 torLog.txt
+
+# Not Needed
+/Ignore
